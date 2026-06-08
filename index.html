@@ -57,7 +57,7 @@ onAuthStateChanged(auth,user=>{
     state.user=user;
     document.getElementById('uname').textContent=user.displayName||user.email.split('@')[0];
     document.getElementById('uemail').textContent=user.email;
-    document.getElementById('mbtn').textContent=(user.displayName||user.email)[0].toUpperCase();
+    const av2=document.getElementById('uavatar');if(av2){if(user.photoURL){av2.style.backgroundImage=`url(${user.photoURL})`;av2.textContent='';}else av2.textContent=(user.displayName||user.email)[0].toUpperCase();}
     const av=document.getElementById('uavatar');
     if(user.photoURL){av.style.backgroundImage=`url(${user.photoURL})`;av.textContent='';}
     else av.textContent=(user.displayName||user.email)[0].toUpperCase();
@@ -95,7 +95,7 @@ window.persist=async function(col,id,data){
 window.persistDelete=async function(col,id){if(state.user)await fsDel(state.user.uid,col,String(id));};
 </script>
 <style>
-:root{--sage:#4a7c59;--sage-light:#e8f0eb;--sage-mid:#c2d9c9;--terra:#c4623a;--terra-light:#faeee8;--cream:#faf8f4;--ink:#1e1e1e;--ink-mid:#555;--ink-light:#888;--border:rgba(0,0,0,0.09);--white:#fff;--gold:#d4a843;--gold-light:#fdf3dc;--red:#c44;--red-light:#fee;--purple:#534AB7;--purple-light:#EEEDFE;--blue:#185FA5;--blue-light:#E6F1FB;--sw:220px}
+:root{--sage:#4a7c59;--sage-light:#e8f0eb;--sage-mid:#c2d9c9;--terra:#c4623a;--terra-light:#faeee8;--cream:#faf8f4;--ink:#1e1e1e;--ink-mid:#555;--ink-light:#888;--border:rgba(0,0,0,0.09);--white:#fff;--gold:#d4a843;--gold-light:#fdf3dc;--red:#c44;--red-light:#fee;--purple:#534AB7;--purple-light:#EEEDFE;--blue:#185FA5;--blue-light:#E6F1FB}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;overflow-x:hidden}
 /* AUTH */
@@ -128,24 +128,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .lspin{width:40px;height:40px;border:3px solid var(--sage-mid);border-top-color:var(--sage);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* SHELL */
-.shell{display:flex;min-height:100vh}
-.sidebar{display:none}
-.main{flex:1;overflow-y:auto;padding:72px 32px 90px;margin-left:0}
-.brand{padding:0 24px 28px;border-bottom:1px solid var(--border)}
-.brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--sage)}
-.brand-sub{font-size:11px;color:var(--ink-light);margin-top:2px}
-.nav{padding:20px 0;flex:1}
-.ni{display:flex;align-items:center;gap:10px;padding:10px 24px;font-size:14px;cursor:pointer;color:var(--ink-mid);transition:all .15s;border-left:3px solid transparent;user-select:none}
-.ni:hover{background:var(--sage-light);color:var(--sage)}
-.ni.on{background:var(--sage-light);color:var(--sage);border-left-color:var(--sage);font-weight:500}
-.suser{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;cursor:pointer}
-.suser:hover{background:var(--sage-light)}
-.uav{width:34px;height:34px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;flex-shrink:0;background-size:cover;background-position:center}
-.uinfo{flex:1;min-width:0}
-.uname{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.uemail{font-size:11px;color:var(--ink-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sfooter{padding:10px 24px 4px;font-size:10px;color:var(--ink-light)}
-.vtag{display:inline-block;background:var(--sage-light);color:var(--sage);padding:2px 8px;border-radius:10px;font-size:10px;font-weight:500}
+.shell{display:block;min-height:100vh}
+
+.main{overflow-y:auto;padding:72px 32px 90px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* MOBILE */
 .mnav{display:block;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:60;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
 .mnav-inner{display:flex;justify-content:space-around}
@@ -275,6 +275,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 /* RESPONSIVE */
 @media(max-width:768px){
   .main{padding:16px 16px 90px}
+  .mhdr{padding:12px 16px}
   .mnav{display:block}.mhdr{display:flex}
   .sbar2{grid-template-columns:repeat(2,1fr)}
   .cgrid{grid-template-columns:1fr}.sl2{grid-template-columns:1fr}
@@ -315,27 +316,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 <div class="lscreen" id="lscreen"><div style="font-size:48px;margin-bottom:8px">🥗</div><div class="lspin"></div><div style="font-size:14px;color:var(--ink-light)" id="ltxt">Loading…</div></div>
 <!-- APP -->
 <div class="shell" id="shell" style="display:none">
-  <div class="sidebar">
-    <div class="brand"><div class="brand-name">🥗 My Meal Planner</div><div class="brand-sub">Cook with confidence</div></div>
-    <nav class="nav">
-      <div class="ni on" onclick="showPage('dashboard')" id="nav-dashboard"><span>🏠</span>Dashboard</div>
-      <div class="ni" onclick="showPage('recipes')" id="nav-recipes"><span>📖</span>Recipes</div>
-      <div class="ni" onclick="showPage('inventory')" id="nav-inventory"><span>🥕</span>Inventory</div>
-      <div class="ni" onclick="showPage('calendar')" id="nav-calendar"><span>📅</span>Meal Calendar</div>
-      <div class="ni" onclick="showPage('nutrition')" id="nav-nutrition"><span>📊</span>Nutrition</div>
-      <div class="ni" onclick="showPage('shopping')" id="nav-shopping"><span>🛒</span>Shopping List</div>
-      <div class="ni" onclick="showPage('data')" id="nav-data"><span>💾</span>Data & Backup</div>
-    </nav>
-    <div class="sfooter"><span class="vtag">v2.1.0</span></div>
-    <div class="suser" onclick="doSignOut()">
-      <div class="uav" id="uavatar"></div>
-      <div class="uinfo"><div class="uname" id="uname"></div><div class="uemail" id="uemail"></div></div>
-      <div style="font-size:11px;color:var(--ink-light)" title="Sign out">↩</div>
-    </div>
-  </div>
+
   <div class="mhdr" id="mhdr">
-    <div class="mhdr-l"><div style="font-size:22px">🥗</div><div class="mhdr-t" id="mhdrt">Dashboard</div></div>
-    <div class="mbtn" id="mbtn" onclick="doSignOut()"></div>
+    <div class="mhdr-l">
+      <div style="font-size:22px">🥗</div>
+      <div>
+        <div class="mhdr-t" id="mhdrt">Dashboard</div>
+        <div style="font-size:11px;color:var(--ink-light)" id="mhdr-sub">My Meal Planner</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="text-align:right">
+        <div style="font-size:12px;font-weight:500" id="uname"></div>
+        <div style="font-size:11px;color:var(--ink-light)" id="uemail"></div>
+      </div>
+      <div class="mbtn" id="uavatar" onclick="doSignOut()" title="Sign out" style="flex-shrink:0"></div>
+    </div>
   </div>
   <div class="main" id="main"></div>
 </div>
@@ -455,9 +451,7 @@ function closeM(id){document.getElementById(id).classList.remove('on');}
 // Navigation
 function showPage(p){
   state.page=p;state.selRec=null;
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
   document.querySelectorAll('.mni').forEach(n=>n.classList.remove('on'));
-  const nd=document.getElementById('nav-'+p);if(nd)nd.classList.add('on');
   const mn=document.getElementById('mn-'+p);if(mn)mn.classList.add('on');
   const titles={dashboard:'Dashboard',recipes:'Recipes',inventory:'Pantry',calendar:'Meal Calendar',nutrition:'Nutrition',shopping:'Shopping List',data:'Settings'};
   const mh=document.getElementById('mhdrt');if(mh)mh.textContent=titles[p]||p;
