@@ -129,8 +129,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 @keyframes spin{to{transform:rotate(360deg)}}
 /* SHELL */
 .shell{display:flex;min-height:100vh}
-.sidebar{width:var(--sw);background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:24px 0;flex-shrink:0;position:fixed;top:0;left:0;height:100vh;z-index:50}
-.main{flex:1;overflow-y:auto;padding:32px;margin-left:var(--sw)}
+.sidebar{display:none}
+.main{flex:1;overflow-y:auto;padding:72px 32px 90px;margin-left:0}
 .brand{padding:0 24px 28px;border-bottom:1px solid var(--border)}
 .brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--sage)}
 .brand-sub{font-size:11px;color:var(--ink-light);margin-top:2px}
@@ -147,13 +147,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .sfooter{padding:10px 24px 4px;font-size:10px;color:var(--ink-light)}
 .vtag{display:inline-block;background:var(--sage-light);color:var(--sage);padding:2px 8px;border-radius:10px;font-size:10px;font-weight:500}
 /* MOBILE */
-.mnav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:60;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
+.mnav{display:block;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);z-index:60;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
 .mnav-inner{display:flex;justify-content:space-around}
-.mni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 10px;cursor:pointer;color:var(--ink-light);transition:all .15s;min-width:50px}
+.mni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;cursor:pointer;color:var(--ink-light);transition:all .15s;min-width:0;flex:1}
 .mni.on{color:var(--sage)}
 .mni span:first-child{font-size:20px}
 .mni span:last-child{font-size:10px;font-weight:500}
-.mhdr{display:none;background:var(--white);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:40;align-items:center;justify-content:space-between}
+.mhdr{display:flex;background:var(--white);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:40;align-items:center;justify-content:space-between}
 .mhdr-l{display:flex;align-items:center;gap:10px}
 .mhdr-t{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:var(--sage)}
 .mbtn{width:32px;height:32px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;cursor:pointer}
@@ -274,8 +274,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .dad{font-size:12px;color:var(--ink-light);margin-top:3px}
 /* RESPONSIVE */
 @media(max-width:768px){
-  .sidebar{transform:translateX(-100%)}
-  .main{margin-left:0;padding:16px 16px 90px}
+  .main{padding:16px 16px 90px}
   .mnav{display:block}.mhdr{display:flex}
   .sbar2{grid-template-columns:repeat(2,1fr)}
   .cgrid{grid-template-columns:1fr}.sl2{grid-template-columns:1fr}
@@ -288,7 +287,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 @media(min-width:769px){
   .mov{align-items:center}
   .modal{border-radius:18px;width:540px;max-height:85vh}
-  .mhdr{display:none}
+
   .toast{bottom:24px}
 }
 </style>
@@ -327,7 +326,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
       <div class="ni" onclick="showPage('shopping')" id="nav-shopping"><span>🛒</span>Shopping List</div>
       <div class="ni" onclick="showPage('data')" id="nav-data"><span>💾</span>Data & Backup</div>
     </nav>
-    <div class="sfooter"><span class="vtag">v2.0.0</span></div>
+    <div class="sfooter"><span class="vtag">v2.1.0</span></div>
     <div class="suser" onclick="doSignOut()">
       <div class="uav" id="uavatar"></div>
       <div class="uinfo"><div class="uname" id="uname"></div><div class="uemail" id="uemail"></div></div>
@@ -340,13 +339,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
   </div>
   <div class="main" id="main"></div>
 </div>
-<div class="mnav" id="mnav" style="display:none">
+<div class="mnav" id="mnav">
   <div class="mnav-inner">
     <div class="mni on" onclick="showPage('dashboard')" id="mn-dashboard"><span>🏠</span><span>Home</span></div>
     <div class="mni" onclick="showPage('recipes')" id="mn-recipes"><span>📖</span><span>Recipes</span></div>
     <div class="mni" onclick="showPage('inventory')" id="mn-inventory"><span>🥕</span><span>Pantry</span></div>
-    <div class="mni" onclick="showPage('calendar')" id="mn-calendar"><span>📅</span><span>Calendar</span></div>
+    <div class="mni" onclick="showPage('nutrition')" id="mn-nutrition"><span>📊</span><span>Nutrition</span></div>
     <div class="mni" onclick="showPage('shopping')" id="mn-shopping"><span>🛒</span><span>Shopping</span></div>
+    <div class="mni" onclick="showPage('data')" id="mn-data"><span>⚙️</span><span>Settings</span></div>
   </div>
 </div>
 <!-- MODALS -->
@@ -357,28 +357,54 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
     <div class="frow"><div class="fg"><label class="lbl">Name</label><input class="inp" id="rn" placeholder="e.g. Nasi Lemak"></div><div class="fg"><label class="lbl">Emoji</label><input class="inp" id="re" placeholder="🍛" maxlength="2"></div></div>
     <div class="frow"><div class="fg"><label class="lbl">Category</label><select class="inp" id="rc"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option><option>Dessert</option></select></div><div class="fg"><label class="lbl">Prep Time (min)</label><input class="inp" id="rt" type="number" placeholder="30"></div></div>
     <div class="fg"><label class="lbl">Servings</label><input class="inp" id="rs" type="number" placeholder="4" style="width:100px"></div>
-    <div class="fg"><label class="lbl">Ingredients (name · qty · unit)</label><div id="ingc"></div><button class="btn btn-s btn-sm" onclick="addIng()" style="margin-top:8px">+ Add ingredient</button></div>
+    <div class="fg">
+      <label class="lbl">Ingredients</label>
+      <div id="ingc" style="margin-bottom:8px"></div>
+      <button class="btn btn-s btn-sm" onclick="openIngPicker()" style="display:flex;align-items:center;gap:6px;margin-top:4px">
+        <span style="font-size:16px">＋</span> Add Ingredient from Pantry
+      </button>
+      <button class="btn btn-s btn-sm" onclick="addIngManual()" style="margin-top:6px;color:var(--ink-light)">
+        + Add manually (not in pantry)
+      </button>
+    </div>
     <div class="fg"><label class="lbl">Instructions</label><textarea class="inp" id="rnotes" rows="3" placeholder="Brief instructions..."></textarea></div>
     <div class="fg"><label class="lbl">YouTube Link <span style="font-weight:400;text-transform:none;font-size:11px;color:var(--ink-light)">(optional)</span></label><input class="inp" id="ryt" placeholder="Paste YouTube URL..."></div>
     <div class="mact"><button class="btn btn-s" onclick="closeM('rmod')">Cancel</button><button class="btn btn-p" onclick="saveRecipe()">Save Recipe</button></div>
   </div>
 </div>
+<!-- INGREDIENT PICKER MODAL -->
+<div class="mov" id="ingpicker">
+  <div class="modal" style="max-height:80vh">
+    <div class="mhdl"></div>
+    <div class="mtitle">🥕 Add Ingredient</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="ingpick-cats"></div>
+    <div style="margin-bottom:12px"><input class="inp" id="ingpick-search" placeholder="Search ingredients…" oninput="filterIngPicker(this.value)"></div>
+    <div id="ingpick-list" style="max-height:240px;overflow-y:auto;margin-bottom:16px"></div>
+    <div style="background:var(--cream);border-radius:12px;padding:14px;margin-bottom:4px" id="ingpick-form" style="display:none">
+      <div style="font-size:13px;font-weight:500;margin-bottom:10px" id="ingpick-selected-name">Selected: —</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:80px"><label class="lbl" style="font-size:10px">Quantity</label><input class="inp" id="ingpick-qty" type="number" placeholder="e.g. 200" min="0" step="0.1"></div>
+        <div style="flex:1;min-width:80px"><label class="lbl" style="font-size:10px">Unit</label><input class="inp" id="ingpick-unit" placeholder="g / ml / pcs"></div>
+        <button class="btn btn-p" onclick="confirmIngPick()" style="margin-top:18px">Add</button>
+      </div>
+    </div>
+    <div class="mact">
+      <button class="btn btn-s" onclick="closeM('ingpicker')">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <div class="mov" id="imod">
   <div class="modal">
     <div class="mhdl"></div>
     <div class="mtitle" id="imtitle">🥕 Add Item</div>
-    <div class="frow"><div class="fg"><label class="lbl">Item Name</label><input class="inp" id="in" placeholder="e.g. HL Full Cream Milk"></div><div class="fg"><label class="lbl">Category</label><select class="inp" id="ic"><option>Produce</option><option>Meat</option><option>Dairy</option><option>Grain</option><option>Spice</option><option>Other</option></select></div></div>
+    <div class="frow"><div class="fg"><label class="lbl">Item Name</label><input class="inp" id="in" placeholder="e.g. HL Full Cream Milk"></div><div class="fg"><label class="lbl">Category</label><select class="inp" id="ic"><option>Meat</option><option>Vegetables</option><option>Dairy</option><option>Grain</option><option>Spices</option><option>Drinks</option><option>Other</option></select></div></div>
     <div class="frow"><div class="fg"><label class="lbl">Quantity</label><input class="inp" id="iq" type="number" placeholder="5"></div><div class="fg"><label class="lbl">Unit</label><input class="inp" id="iu" placeholder="pcs / g / ml"></div></div>
     <div class="fg"><label class="lbl">Min Stock</label><input class="inp" id="imin" type="number" placeholder="2"></div>
     <div class="fg"><label class="lbl">Shopping List</label><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:var(--ink-mid)"><input type="checkbox" id="isl" checked style="width:16px;height:16px;accent-color:var(--sage)">Auto-add at ≤20% stock</label></div>
     <div style="border-top:1px solid var(--border);margin:16px 0;padding-top:16px">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-        <div><div style="font-size:13px;font-weight:500">📊 Nutrition Facts <span style="font-weight:400;color:var(--ink-light);font-size:11px">(per 100g or 100ml)</span></div><div style="font-size:11px;color:var(--ink-light);margin-top:2px">Scan label or enter manually.</div></div>
-        <button class="btn btn-s btn-sm" onclick="document.getElementById('nlph').click()">📷 Scan Label</button>
-        <input type="file" id="nlph" accept="image/*" capture="environment" style="display:none" onchange="scanLabel(this)">
-      </div>
-      <div id="sstat" style="display:none;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:12px"></div>
-      <div id="sprev" style="display:none;margin-bottom:12px"><img id="simg" style="width:100%;max-height:160px;object-fit:cover;border-radius:10px;border:1px solid var(--border)"><div style="font-size:11px;color:var(--ink-light);margin-top:4px;text-align:center">Edit values below if needed</div></div>
+      <div style="font-size:13px;font-weight:500;margin-bottom:4px">📊 Nutrition Facts <span style="font-weight:400;color:var(--ink-light);font-size:11px">(per 100g or 100ml — optional)</span></div>
+      <div style="font-size:11px;color:var(--ink-light);margin-bottom:12px">Enter values from the product packaging to get accurate nutrition calculations.</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
         <div style="margin-bottom:8px"><label class="lbl" style="font-size:10px">Calories (kcal)</label><input class="inp" id="ncal" type="number" placeholder="—" min="0" step="0.1"></div>
         <div style="margin-bottom:8px"><label class="lbl" style="font-size:10px">Carbs (g)</label><input class="inp" id="ncarb" type="number" placeholder="—" min="0" step="0.1"></div>
@@ -387,14 +413,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
         <div style="margin-bottom:8px"><label class="lbl" style="font-size:10px">Fiber (g)</label><input class="inp" id="nfib" type="number" placeholder="—" min="0" step="0.1"></div>
         <div style="margin-bottom:8px"><label class="lbl" style="font-size:10px">Sodium (mg)</label><input class="inp" id="nsod" type="number" placeholder="—" min="0" step="0.1"></div>
       </div>
-      <div id="nsrc" style="display:none;font-size:11px;margin-top:4px"></div>
     </div>
-    <div id="aksect" style="background:var(--cream);border-radius:10px;padding:12px;margin-bottom:8px;display:none">
-      <div style="font-size:12px;font-weight:500;margin-bottom:6px;color:var(--ink-mid)">🔑 Anthropic API Key</div>
-      <input class="inp" id="akinp" type="password" placeholder="sk-ant-..." style="font-size:13px">
-      <div style="font-size:11px;color:var(--ink-light);margin-top:4px">Stored locally. Get yours at console.anthropic.com</div>
-      <button class="btn btn-s btn-sm" onclick="saveKey()" style="margin-top:8px">Save Key</button>
-    </div>
+
     <div class="mact"><button class="btn btn-s" onclick="closeM('imod')">Cancel</button><button class="btn btn-p" onclick="saveInv()">Save Item</button></div>
   </div>
 </div>
@@ -415,14 +435,14 @@ const NDB={'Bread':{cal:265,carb:49,protein:9,fat:3.2,fiber:2.7,sodium:491,sugar
 const UC={g:1,ml:1,kg:1000,l:1000,pcs:100,piece:100,slices:30,slice:30,cloves:5,clove:5,pinch:1,tbsp:15,tsp:5,cup:240};
 const RDA_SG={label:'SG Adult (HPB)',cal:2000,carb:300,protein:55,fat:67,fiber:25,sodium:2000,sugar:40};
 
-let state={page:'dashboard',user:null,recipes:[],inventory:[],meals:[],rdaProfile:'SG_ADULT',customCalGoal:null,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),selRec:null,nutTab:'today',slChecked:{},slQty:{},rfilt:'all',_atab:'in'};
+let state={page:'dashboard',user:null,recipes:[],inventory:[],meals:[],rdaProfile:'SG_ADULT',customCalGoal:null,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),selRec:null,nutTab:'today',slChecked:{},slQty:{},rfilt:'all',invCat:'All',_atab:'in'};
 let nextId={recipe:1,inv:1,meal:1};
 let ingRows=[];let charts={};
 
 // UI helpers
-function showLoading(t='Loading…'){document.getElementById('ltxt').textContent=t;document.getElementById('lscreen').classList.add('on');document.getElementById('ascreen').classList.remove('on');document.getElementById('shell').style.display='none';document.getElementById('mnav').style.display='none';}
-function hideLoading(){document.getElementById('lscreen').classList.remove('on');document.getElementById('shell').style.display='flex';document.getElementById('mnav').style.display='block';}
-function showAuthScreen(){document.getElementById('ascreen').classList.add('on');document.getElementById('lscreen').classList.remove('on');document.getElementById('shell').style.display='none';document.getElementById('mnav').style.display='none';}
+function showLoading(t='Loading…'){document.getElementById('ltxt').textContent=t;document.getElementById('lscreen').classList.add('on');document.getElementById('ascreen').classList.remove('on');document.getElementById('shell').style.display='none';}
+function hideLoading(){document.getElementById('lscreen').classList.remove('on');document.getElementById('shell').style.display='flex';}
+function showAuthScreen(){document.getElementById('ascreen').classList.add('on');document.getElementById('lscreen').classList.remove('on');document.getElementById('shell').style.display='none';}
 function showAuthErr(m){const e=document.getElementById('aerr');e.textContent=m;e.classList.add('on');}
 function setBtnLoading(on){const b=document.getElementById('amainbtn');b.disabled=on;b.textContent=on?'Please wait…':(state._atab==='reg'?'Create Account':'Sign In');}
 function switchTab(t){state._atab=t;document.getElementById('t-in').classList.toggle('on',t==='in');document.getElementById('t-reg').classList.toggle('on',t==='reg');document.getElementById('anf').classList.toggle('on',t==='reg');document.getElementById('ap2w').style.display=t==='reg'?'block':'none';document.getElementById('amainbtn').textContent=t==='reg'?'Create Account':'Sign In';document.getElementById('aerr').classList.remove('on');setBtnLoading(false);}
@@ -439,7 +459,7 @@ function showPage(p){
   document.querySelectorAll('.mni').forEach(n=>n.classList.remove('on'));
   const nd=document.getElementById('nav-'+p);if(nd)nd.classList.add('on');
   const mn=document.getElementById('mn-'+p);if(mn)mn.classList.add('on');
-  const titles={dashboard:'Dashboard',recipes:'Recipes',inventory:'Inventory',calendar:'Meal Calendar',nutrition:'Nutrition',shopping:'Shopping List',data:'Data & Backup'};
+  const titles={dashboard:'Dashboard',recipes:'Recipes',inventory:'Pantry',calendar:'Meal Calendar',nutrition:'Nutrition',shopping:'Shopping List',data:'Settings'};
   const mh=document.getElementById('mhdrt');if(mh)mh.textContent=titles[p]||p;
   render();window.scrollTo(0,0);
 }
@@ -552,11 +572,18 @@ function rrecDet(){
 }
 
 function rinv(){
-  return`<div class="ph"><div class="pt">Inventory</div><button class="btn btn-p" onclick="openNewInv()">+ Add Item</button></div>
+  if(!state.invCat)state.invCat='All';
+  const cats=['All','Meat','Vegetables','Dairy','Grain','Spices','Drinks','Other'];
+  const filtered=state.invCat==='All'?state.inventory:state.inventory.filter(i=>i.cat===state.invCat);
+  return`<div class="ph"><div class="pt">Pantry</div><button class="btn btn-p" onclick="openNewInv()">+ Add Item</button></div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+    ${cats.map(cat=>{const count=cat==='All'?state.inventory.length:state.inventory.filter(i=>i.cat===cat).length;return`<div onclick="state.invCat='${cat}';render()" style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid ${state.invCat===cat?'var(--sage)':'var(--border)'};background:${state.invCat===cat?'var(--sage-light)':'var(--white)'};color:${state.invCat===cat?'var(--sage)':'var(--ink-mid)'}">${cat} <span style="opacity:.6">${count}</span></div>`;}).join('')}
+  </div>
+  ${filtered.length===0?`<div style="text-align:center;padding:40px;color:var(--ink-light)"><div style="font-size:36px;margin-bottom:8px">🥕</div>No items in ${state.invCat}. <span onclick="openNewInv()" style="color:var(--sage);cursor:pointer;text-decoration:underline">Add one!</span></div>`:`
   <div style="overflow-x:auto"><div class="card"><table class="itbl">
-  <thead><tr><th style="width:22%">Item</th><th style="width:11%">Cat</th><th style="width:14%">Qty</th><th style="width:12%">Stock</th><th style="width:10%">Status</th><th style="width:13%">🛒</th><th style="width:18%">Actions</th></tr></thead>
-  <tbody>${state.inventory.map(i=>{const st=stStat(i);const hn=!!(i.nutrition&&i.nutrition.cal);return`<tr><td style="font-weight:500">${i.name}${hn?`<span class="badge bok" style="font-size:9px;margin-left:4px">${i.nutrition._source==='scan'?'📷':'✍️'}</span>`:''}</td><td><span class="tag tg" style="font-size:10px">${i.cat}</span></td><td>${i.qty} ${i.unit}</td><td><div class="sbar"><div class="sfill ${st==='ok'?'sok':st==='low'?'slow':'sout'}" style="width:${stPct(i)}%"></div></div></td><td><span class="badge ${st==='ok'?'bok':st==='low'?'blow':'bout'}" style="font-size:10px">${st==='ok'?'OK':st==='low'?'Low':'Out'}</span></td><td><label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" ${i.slInclude?'checked':''} onchange="toggleSL('${i.id}',this.checked)" style="accent-color:var(--sage)"><span class="badge bbl" style="font-size:10px">${stPer(i)}%</span></label></td><td><div style="display:flex;gap:4px"><button class="btn btn-s btn-sm" onclick="openEditInv('${i.id}')">✏️</button><button class="btn btn-d btn-sm" onclick="delInv('${i.id}')">🗑</button></div></td></tr>`;}).join('')}</tbody>
-  </table></div></div>`;
+  <thead><tr><th style="width:24%">Item</th><th style="width:12%">Cat</th><th style="width:14%">Qty</th><th style="width:12%">Stock</th><th style="width:10%">Status</th><th style="width:12%">🛒</th><th style="width:16%">Actions</th></tr></thead>
+  <tbody>${filtered.map(i=>{const st=stStat(i);const hn=!!(i.nutrition&&i.nutrition.cal);return`<tr><td style="font-weight:500">${i.name}${hn?`<span class="badge bok" style="font-size:9px;margin-left:4px">✍️</span>`:''}</td><td><span class="tag tg" style="font-size:10px">${i.cat}</span></td><td>${i.qty} ${i.unit}</td><td><div class="sbar"><div class="sfill ${st==='ok'?'sok':st==='low'?'slow':'sout'}" style="width:${stPct(i)}%"></div></div></td><td><span class="badge ${st==='ok'?'bok':st==='low'?'blow':'bout'}" style="font-size:10px">${st==='ok'?'OK':st==='low'?'Low':'Out'}</span></td><td><label style="display:flex;align-items:center;gap:4px;cursor:pointer"><input type="checkbox" ${i.slInclude?'checked':''} onchange="toggleSL('${i.id}',this.checked)" style="accent-color:var(--sage)"><span class="badge bbl" style="font-size:10px">${stPer(i)}%</span></label></td><td><div style="display:flex;gap:4px"><button class="btn btn-s btn-sm" onclick="openEditInv('${i.id}')">✏️</button><button class="btn btn-d btn-sm" onclick="delInv('${i.id}')">🗑</button></div></td></tr>`;}).join('')}</tbody>
+  </table></div></div>`}`;
 }
 
 function rcal(){
@@ -670,20 +697,20 @@ function rshop(){
 
 function rdata(){
   const kb=(JSON.stringify({r:state.recipes,i:state.inventory,m:state.meals}).length/1024).toFixed(1);
-  return`<div class="ph"><div class="pt">Data & Backup</div></div>
+  return`<div class="ph"><div class="pt">⚙️ Settings</div></div>
   <div class="card" style="margin-bottom:16px;background:var(--sage-light);border-color:var(--sage-mid)">
-    <div style="display:flex;gap:12px;align-items:center"><div style="font-size:28px">☁️</div><div><div style="font-weight:500;color:var(--sage)">Synced to Firebase</div><div style="font-size:13px;color:var(--ink-mid);margin-top:2px">${state.recipes.length} recipes · ${state.inventory.length} inventory · ${state.meals.length} meals · ~${kb} KB</div><div style="font-size:12px;color:var(--sage);margin-top:2px">Signed in as ${state.user?.email||''}</div></div></div>
+    <div style="display:flex;gap:12px;align-items:center"><div style="font-size:28px">✅</div><div><div style="font-weight:500;color:var(--sage)">Synced Successfully</div><div style="font-size:13px;color:var(--ink-mid);margin-top:2px">${state.recipes.length} recipes · ${state.inventory.length} pantry items · ${state.meals.length} meals · ~${kb} KB</div><div style="font-size:12px;color:var(--sage);margin-top:2px">Signed in as ${state.user?.email||''}</div></div></div>
   </div>
   <div class="sdiv">Export & Import</div>
   <div class="dac"><div><div class="dat">📤 Export all data</div><div class="dad">Download a .json backup of all your data.</div></div><button class="btn btn-p" onclick="expData()">Export</button></div>
   <div class="dac"><div><div class="dat">📥 Import data</div><div class="dad">Restore from a .json backup. Merges with existing data.</div></div><button class="btn btn-s" onclick="document.getElementById('impf').click()">Import</button><input type="file" id="impf" accept=".json" style="display:none" onchange="impData(this)"></div>
   <div class="sdiv">API Key</div>
-  <div class="dac"><div><div class="dat">🔑 Anthropic API Key</div><div class="dad">Required for nutrition label scanning. Stored locally on your device.</div></div><button class="btn btn-s" onclick="promptKey()">${localStorage.getItem('mp_apikey')?'Update Key':'Add Key'}</button></div>
+  <div class="dac" style="background:var(--sage-light);border-color:var(--sage-mid)"><div><div class="dat">🔑 Nutrition Label Scanning</div><div class="dad">API key is securely stored on the server. Scan Label works automatically for all users — no setup needed.</div></div><span class="badge bok">✓ Configured</span></div>
   <div class="sdiv">Account</div>
   <div class="dac" style="border-color:var(--red-light)"><div><div class="dat">↩ Sign Out</div><div class="dad">Your data stays safe in Firebase.</div></div><button class="btn btn-d" onclick="doSignOut()">Sign Out</button></div>
   <div class="sdiv">App Info</div>
   <div class="card"><div style="font-size:14px;display:flex;flex-direction:column;gap:8px">
-    <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-light)">Version</span><span style="font-weight:500">v2.0.0</span></div>
+    <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-light)">Version</span><span style="font-weight:500">v2.1.0</span></div>
     <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-light)">Storage</span><span style="font-weight:500">Firebase Firestore</span></div>
     <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-light)">RDA Profile</span><span style="font-weight:500">SG Adult (HPB)</span></div>
     <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-light)">Account</span><span style="font-weight:500">${state.user?.email||''}</span></div>
@@ -692,20 +719,80 @@ function rdata(){
 </script>
 <script>
 // RECIPE ACTIONS
-function addIng(name='',qty='',unit=''){
+function addIngRow(name='',qty='',unit='',fromPantry=false){
   const id='ir'+Date.now()+Math.random().toString(36).slice(2);ingRows.push(id);
   const div=document.createElement('div');div.className='irow';div.id=id;
-  div.innerHTML=`<input class="inp" placeholder="Ingredient" value="${name}"><input class="inp" type="number" placeholder="Qty" value="${qty}" style="width:65px"><input class="inp" placeholder="Unit" value="${unit}" style="width:65px"><button class="rbtn" onclick="rmIng('${id}')">×</button>`;
+  div.style.cssText='display:flex;gap:8px;align-items:center;margin-bottom:8px;background:var(--cream);border-radius:10px;padding:8px 10px;border:1px solid var(--border)';
+  div.innerHTML=`<span style="font-size:16px">🥕</span><input class="inp" placeholder="Ingredient" value="${name}" style="flex:2;background:transparent;border:none;padding:4px 0;font-size:14px;outline:none" ${fromPantry?'readonly style="flex:2;background:transparent;border:none;padding:4px 0;font-size:14px;outline:none;color:var(--ink)"':''}><input class="inp" type="number" placeholder="Qty" value="${qty}" style="width:70px;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:13px;padding:4px 8px"><input class="inp" placeholder="Unit" value="${unit}" style="width:70px;background:transparent;border:1px solid var(--border);border-radius:6px;font-size:13px;padding:4px 8px"><button style="background:none;border:none;color:var(--red);cursor:pointer;font-size:18px;padding:0 4px;flex-shrink:0" onclick="rmIng('${id}')">×</button>`;
   document.getElementById('ingc').appendChild(div);
 }
+// Keep addIng as alias for backward compat
+function addIng(name='',qty='',unit=''){addIngRow(name,qty,unit,false);}
+function addIngManual(){addIngRow('','','',false);}
 function rmIng(id){document.getElementById(id)?.remove();ingRows=ingRows.filter(r=>r!==id);}
+
+// INGREDIENT PICKER
+let ingPickCat='All';
+let ingPickSelected=null;
+
+function openIngPicker(){
+  ingPickCat='All';ingPickSelected=null;
+  document.getElementById('ingpick-search').value='';
+  document.getElementById('ingpick-form').style.display='none';
+  document.getElementById('ingpick-selected-name').textContent='Selected: —';
+  renderIngPickCats();renderIngPickList('');
+  openM('ingpicker');
+}
+function renderIngPickCats(){
+  const cats=['All','Meat','Vegetables','Dairy','Grain','Spices','Drinks','Other'];
+  document.getElementById('ingpick-cats').innerHTML=cats.map(cat=>`<div onclick="ingPickCat='${cat}';renderIngPickList(document.getElementById('ingpick-search').value)" style="padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid ${ingPickCat===cat?'var(--sage)':'var(--border)'};background:${ingPickCat===cat?'var(--sage-light)':'var(--white)'};color:${ingPickCat===cat?'var(--sage)':'var(--ink-mid)'}">${cat}</div>`).join('');
+}
+function filterIngPicker(q){renderIngPickList(q);}
+function renderIngPickList(q=''){
+  const items=state.inventory.filter(i=>{
+    const matchCat=ingPickCat==='All'||i.cat===ingPickCat;
+    const matchQ=!q||i.name.toLowerCase().includes(q.toLowerCase());
+    return matchCat&&matchQ;
+  });
+  renderIngPickCats();
+  const el=document.getElementById('ingpick-list');
+  if(items.length===0){el.innerHTML=`<div style="text-align:center;padding:20px;color:var(--ink-light);font-size:13px">No items found. <span onclick="closeM('ingpicker');openNewInv()" style="color:var(--sage);cursor:pointer;text-decoration:underline">Add to pantry first</span></div>`;return;}
+  el.innerHTML=items.map(i=>{
+    const sel=ingPickSelected&&ingPickSelected.id===i.id;
+    const st=stStat(i);
+    return`<div onclick="selectIngItem('${i.id}')" style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;margin-bottom:6px;cursor:pointer;border:1.5px solid ${sel?'var(--sage)':'var(--border)'};background:${sel?'var(--sage-light)':'var(--white)'}">
+      <div><div style="font-size:14px;font-weight:500">${i.name}</div><div style="font-size:11px;color:var(--ink-light)">${i.cat} · ${i.qty} ${i.unit} in stock</div></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="badge ${st==='ok'?'bok':st==='low'?'blow':'bout'}" style="font-size:10px">${st==='ok'?'✓':st==='low'?'Low':'Out'}</span>${sel?`<span style="color:var(--sage);font-size:18px">✓</span>`:''}</div>
+    </div>`;
+  }).join('');
+}
+function selectIngItem(id){
+  ingPickSelected=state.inventory.find(i=>i.id===id);
+  if(!ingPickSelected)return;
+  document.getElementById('ingpick-selected-name').textContent=ingPickSelected.name;
+  document.getElementById('ingpick-unit').value=ingPickSelected.unit||'';
+  document.getElementById('ingpick-qty').value='';
+  document.getElementById('ingpick-form').style.display='block';
+  renderIngPickList(document.getElementById('ingpick-search').value);
+}
+function confirmIngPick(){
+  if(!ingPickSelected){toast('Please select an ingredient');return;}
+  const qty=parseFloat(document.getElementById('ingpick-qty').value);
+  const unit=document.getElementById('ingpick-unit').value.trim();
+  if(!qty||qty<=0){toast('Please enter a quantity');return;}
+  addIngRow(ingPickSelected.name,qty,unit||ingPickSelected.unit,true);
+  ingPickSelected=null;
+  document.getElementById('ingpick-form').style.display='none';
+  document.getElementById('ingpick-selected-name').textContent='Selected: —';
+  closeM('ingpicker');
+}
 function openNewRec(){
   document.getElementById('rmod')._eid=null;
   document.getElementById('rmtitle').textContent='✨ New Recipe';
   ingRows=[];document.getElementById('ingc').innerHTML='';
   ['rn','re','rt','rnotes','ryt'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('rs').value='4';
-  addIng();addIng();addIng();openM('rmod');
+  document.getElementById('rs').value='2';
+  openM('rmod');
 }
 function openEditRec(id){
   const r=state.recipes.find(r=>r.id===id);if(!r)return;
@@ -719,14 +806,14 @@ function openEditRec(id){
   document.getElementById('rnotes').value=r.notes||'';
   document.getElementById('ryt').value=r.youtubeUrl||'';
   ingRows=[];document.getElementById('ingc').innerHTML='';
-  (r.ingredients||[]).forEach(ing=>addIng(ing.name,ing.qty,ing.unit));
+  (r.ingredients||[]).forEach(ing=>addIngRow(ing.name,ing.qty,ing.unit,false));
   if(!r.ingredients||r.ingredients.length===0)addIng();
   openM('rmod');
 }
 async function saveRecipe(){
   const name=document.getElementById('rn').value.trim();if(!name){toast('Please enter a recipe name');return;}
-  const rows=document.querySelectorAll('#ingc .irow');const ingredients=[];
-  rows.forEach(row=>{const inputs=row.querySelectorAll('input');const n=inputs[0].value.trim(),q=parseFloat(inputs[1].value),u=inputs[2].value.trim();if(n)ingredients.push({name:n,qty:q||1,unit:u||'pcs'});});
+  const rows=document.querySelectorAll('#ingc div[id^="ir"]');const ingredients=[];
+  rows.forEach(row=>{const inputs=row.querySelectorAll('input');if(inputs.length>=3){const n=inputs[0].value.trim(),q=parseFloat(inputs[1].value),u=inputs[2].value.trim();if(n)ingredients.push({name:n,qty:q||1,unit:u||'pcs'});}});
   const ytRaw=document.getElementById('ryt').value.trim();const yid=ytId(ytRaw);
   const eid=document.getElementById('rmod')._eid;
   if(eid){
@@ -752,9 +839,7 @@ async function delRec(id){
 function selRec(id){state.selRec=state.recipes.find(r=>r.id===id);render();}
 function goCal(id){
   state.page='recipes';state.rfilt='all';state.selRec=state.recipes.find(r=>r.id===id);
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
   document.querySelectorAll('.mni').forEach(n=>n.classList.remove('on'));
-  document.getElementById('nav-recipes')?.classList.add('on');
   document.getElementById('mn-recipes')?.classList.add('on');
   document.getElementById('mhdrt').textContent='Recipes';
   render();window.scrollTo(0,0);
@@ -764,15 +849,11 @@ function goCal(id){
 function getNF(){return{cal:parseFloat(document.getElementById('ncal').value)||null,carb:parseFloat(document.getElementById('ncarb').value)||null,protein:parseFloat(document.getElementById('nprot').value)||null,fat:parseFloat(document.getElementById('nfat').value)||null,fiber:parseFloat(document.getElementById('nfib').value)||null,sodium:parseFloat(document.getElementById('nsod').value)||null};}
 function setNF(n){['cal','carb','protein','fat','fiber','sodium'].forEach((k,i)=>{const ids=['ncal','ncarb','nprot','nfat','nfib','nsod'];const el=document.getElementById(ids[i]);if(el)el.value=(n&&n[k]!=null)?n[k]:'';});}
 function rstInvMod(){
-  document.getElementById('sstat').style.display='none';
-  document.getElementById('sprev').style.display='none';
-  document.getElementById('nsrc').style.display='none';
   setNF(null);
-  document.getElementById('aksect').style.display=localStorage.getItem('mp_apikey')?'none':'block';
-  const ki=document.getElementById('akinp');if(ki)ki.value='';
+
 }
-function saveKey(){const k=document.getElementById('akinp').value.trim();if(!k.startsWith('sk-ant-')){toast('Invalid key — must start with sk-ant-');return;}localStorage.setItem('mp_apikey',k);document.getElementById('aksect').style.display='none';toast('✅ API key saved');}
-function promptKey(){const k=prompt('Enter your Anthropic API key (sk-ant-...):','');if(k&&k.startsWith('sk-ant-')){localStorage.setItem('mp_apikey',k);toast('✅ API key saved');}else if(k)toast('Invalid key format');}
+
+
 function openNewInv(){
   document.getElementById('imtitle').textContent='🥕 Add Item';
   ['in','iq','iu','imin'].forEach(id=>document.getElementById(id).value='');
@@ -824,49 +905,7 @@ async function toggleSL(id,val){
   render();
 }
 
-// SCAN NUTRITION LABEL
-async function scanLabel(input){
-  const file=input.files[0];if(!file)return;
-  const ak=localStorage.getItem('mp_apikey');
-  if(!ak){document.getElementById('aksect').style.display='block';toast('Please enter your Anthropic API key first');input.value='';return;}
-  const reader=new FileReader();
-  reader.onload=async(e)=>{
-    const b64=e.target.result.split(',')[1];const mt=file.type||'image/jpeg';
-    document.getElementById('simg').src=e.target.result;document.getElementById('sprev').style.display='block';
-    const ss=document.getElementById('sstat');
-    ss.style.display='block';ss.style.background='var(--gold-light)';ss.style.color='#7a5a0a';
-    ss.innerHTML='📷 Scanning nutrition label… please wait';
-    try{
-      const resp=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','x-api-key':ak,'anthropic-version':'2023-06-01','anthropic-dangerous-allow-browser':'true'},
-        body:JSON.stringify({model:'claude-opus-4-5',max_tokens:600,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:`Read this nutrition facts label. Extract the per 100g or per 100ml values only. If only per serving is shown, convert to per 100g using the serving size shown.
 
-Return ONLY valid JSON, no other text:
-{"cal":number,"carb":number,"protein":number,"fat":number,"fiber":number,"sodium":number,"per":"100g or 100ml","brand":"brand if visible","product":"product name if visible"}
-
-Numbers only (no units). Sodium in mg, others in grams, calories in kcal. Use null if not visible.`}]}]})
-      });
-      const data=await resp.json();
-      if(data.error)throw new Error(data.error.message||'API error');
-      const text=data.content?.[0]?.text||'';
-      const jm=text.match(/\{[\s\S]*\}/);
-      if(!jm)throw new Error('Could not read label — try a clearer photo');
-      const nut=JSON.parse(jm[0]);
-      setNF(nut);
-      document.getElementById('imod')._nsrc='scan';
-      const iname=document.getElementById('in').value;
-      if(!iname&&nut.product)document.getElementById('in').value=nut.product;
-      ss.style.background='var(--sage-light)';ss.style.color='var(--sage)';
-      ss.innerHTML=`✅ Scanned! ${nut.brand||''} ${nut.product||''} · per ${nut.per||'100g'} · <strong>Review and edit below before saving.</strong>`;
-      const src=document.getElementById('nsrc');src.style.display='block';src.innerHTML=`<span style="color:var(--sage)">📷 Scanned from photo · editable</span>`;
-    }catch(err){
-      ss.style.background='var(--red-light)';ss.style.color='var(--red)';
-      ss.innerHTML=`⚠ ${err.message||'Scan failed'}. Enter values manually below.`;
-    }
-  };
-  reader.readAsDataURL(file);input.value='';
-}
 
 // SHOPPING ACTIONS
 function tglCk(id){state.slChecked[id]=!state.slChecked[id];render();}
