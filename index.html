@@ -81,14 +81,14 @@ body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1e1e1e;display:f
 
 /* ── BOTTOM NAV ── */
 #bnav{flex-shrink:0;background:var(--wh);border-top:1px solid var(--bd);height:60px;display:flex;align-items:stretch;padding-bottom:env(safe-area-inset-bottom,0)}
-.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--il);font-size:10px;font-weight:500;border:none;background:none;padding:0;transition:color .15s}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--il);font-size:9px;font-weight:500;border:none;background:none;padding:0;transition:color .15s;min-width:0}
 .bni.on{color:var(--sage)}
-.bni-ic{font-size:20px;line-height:1}
+.bni-ic{font-size:19px;line-height:1}
 
 /* ── AUTH SCREEN ── */
 #auth{display:none;position:fixed;inset:0;background:var(--cr);z-index:100;overflow-y:auto;padding:20px}
 #auth.on{display:flex;align-items:center;justify-content:center}
-.abox{background:var(--wh);border-radius:20px;border:1px solid var(--bd);padding:32px 24px;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+.abox{background:var(--wh);border-radius:20px;border:1px solid var(--bd);padding:28px 20px;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
 .alogo{text-align:center;margin-bottom:24px}
 .alogo-e{font-size:44px;margin-bottom:6px}
 .alogo-n{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--sage)}
@@ -98,7 +98,7 @@ body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1e1e1e;display:f
 .atab.on{background:var(--wh);color:var(--ink)}
 .afg{margin-bottom:13px}
 .albl{display:block;font-size:11px;font-weight:500;color:var(--im);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
-.ainp{width:100%;padding:11px 13px;border:1.5px solid var(--bd);border-radius:10px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--cr);outline:none;-webkit-appearance:none}
+.ainp{width:100%;padding:11px 13px;border:1.5px solid var(--bd);border-radius:10px;font-size:16px;font-family:'DM Sans',sans-serif;background:var(--cr);outline:none;-webkit-appearance:none}
 .ainp:focus{border-color:var(--sage);background:var(--wh)}
 .abtn{width:100%;padding:12px;border-radius:10px;font-size:15px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;border:none;background:var(--sage);color:white;margin-top:4px;transition:all .15s}
 .abtn:disabled{opacity:.6;cursor:not-allowed}
@@ -141,7 +141,7 @@ body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1e1e1e;display:f
 .bok{background:var(--sl);color:var(--sage)}.blow{background:var(--gl);color:var(--gold)}.bout{background:var(--rl);color:var(--red)}.bbl{background:var(--bll);color:var(--bl)}
 
 /* ── RECIPE CARDS ── */
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .rc{background:var(--wh);border-radius:14px;border:1px solid var(--bd);overflow:hidden;cursor:pointer;transition:box-shadow .2s}
 .rc:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08)}
 .rth{height:100px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
@@ -151,7 +151,7 @@ body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1e1e1e;display:f
 .ract{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 
 /* ── TABLES ── */
-.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:360px}
 .tbl th{text-align:left;font-size:11px;font-weight:500;color:var(--il);padding:7px 10px;border-bottom:1px solid var(--bd);text-transform:uppercase;letter-spacing:.4px}
 .tbl td{padding:10px;border-bottom:1px solid rgba(0,0,0,0.04);vertical-align:middle}
 .tbl tr:last-child td{border-bottom:none}
@@ -185,7 +185,7 @@ body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1e1e1e;display:f
 .mtl{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:18px}
 .fg{margin-bottom:14px}
 .lbl{display:block;font-size:11px;font-weight:500;color:var(--im);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
-.inp{width:100%;padding:10px 13px;border:1.5px solid var(--bd);border-radius:10px;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--cr);outline:none;-webkit-appearance:none}
+.inp{width:100%;padding:10px 13px;border:1.5px solid var(--bd);border-radius:10px;font-size:16px;font-family:'DM Sans',sans-serif;background:var(--cr);outline:none;-webkit-appearance:none}
 .inp:focus{border-color:var(--sage);background:var(--wh)}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .mact{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
@@ -200,7 +200,7 @@ body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1e1e1e;display:f
 .tab{padding:6px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;color:var(--im)}
 .tab.on{background:var(--wh);color:var(--ink)}
 .ngd{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
-@media(min-width:500px){.ngd{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:400px){.ngd{grid-template-columns:repeat(3,1fr)}}
 .nmc{background:var(--wh);border-radius:10px;border:1px solid var(--bd);padding:12px}
 .nmn{font-family:'Fraunces',serif;font-size:20px;font-weight:600}
 .nml{font-size:11px;color:var(--il);margin-top:1px}
@@ -384,7 +384,7 @@ const UC={g:1,ml:1,kg:1000,l:1000,pcs:100,piece:100,slices:30,slice:30,cloves:5,
 const RDA={cal:2000,carb:300,protein:55,fat:67,fiber:25,sodium:2000};
 
 // ── STATE ─────────────────────────────────────────────────────
-const ST={page:'dashboard',user:null,recipes:[],inventory:[],meals:[],customCalGoal:null,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),selRec:null,nutTab:'today',slCk:{},slQty:{},rfilt:'all',invCat:'All',_atab:'in'};
+const ST={page:'dashboard',user:null,recipes:[],inventory:[],meals:[],customCalGoal:null,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),selRec:null,nutTab:'today',slCk:{},slQty:{},rfilt:'all',invCat:'All',invSort:'name-az',_atab:'in'};
 const nid={r:1,i:1,m:1};
 let ingRows=[];let ipSel=null;let ipCat='All';let charts={};
 
@@ -514,7 +514,8 @@ function rrec(){
   if(!ST.rfilt)ST.rfilt='all';
   const suf=ST.recipes.filter(r=>hasAll(r));
   const ins=ST.recipes.filter(r=>!hasAll(r));
-  const fil=ST.rfilt==='suf'?suf:ST.rfilt==='ins'?ins:ST.recipes;
+  const base=ST.rfilt==='suf'?suf:ST.rfilt==='ins'?ins:ST.recipes;
+  const fil=[...base].sort((a,b)=>a.name.localeCompare(b.name));
   return`<div class="ph"><div class="pt">Recipes</div><button class="btn bp bsm" onclick="openNewRec()">+ Add Recipe</button></div>
   <div class="tabs">
     <div class="tab ${ST.rfilt==='all'?'on':''}" onclick="ST.rfilt='all';render()">All (${ST.recipes.length})</div>
@@ -558,11 +559,24 @@ function rdet(){
 // ── INVENTORY PAGE ────────────────────────────────────────────
 function rinv(){
   const cats=['All','Meat','Vegetables','Dairy','Grain','Spices','Drinks','Other'];
-  const fil=ST.invCat==='All'?ST.inventory:ST.inventory.filter(i=>i.cat===ST.invCat);
+  let base=ST.invCat==='All'?ST.inventory:ST.inventory.filter(i=>i.cat===ST.invCat);
+  const fil=[...base].sort((a,b)=>{
+    if(ST.invSort==='name-az')return a.name.localeCompare(b.name);
+    if(ST.invSort==='name-za')return b.name.localeCompare(a.name);
+    if(ST.invSort==='stock-low')return stPer(a)-stPer(b);
+    if(ST.invSort==='stock-high')return stPer(b)-stPer(a);
+    if(ST.invSort==='cat')return a.cat.localeCompare(b.cat);
+    return 0;
+  });
+  const sortLabel={'name-az':'A → Z','name-za':'Z → A','stock-low':'Stock ↑','stock-high':'Stock ↓','cat':'Category'};
   return`<div class="ph"><div class="pt">Pantry</div><button class="btn bp bsm" onclick="openNewInv()">+ Add Item</button></div>
   <div class="cpills">${cats.map(cat=>{const cnt=cat==='All'?ST.inventory.length:ST.inventory.filter(i=>i.cat===cat).length;return`<div class="cpill ${ST.invCat===cat?'on':''}" onclick="ST.invCat='${cat}';render()">${cat} <span style="opacity:.6;font-size:10px">${cnt}</span></div>`;}).join('')}</div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+    <span style="font-size:12px;color:var(--il);font-weight:500">Sort:</span>
+    ${['name-az','name-za','stock-low','stock-high','cat'].map(s=>`<div onclick="ST.invSort='${s}';render()" style="padding:4px 11px;border-radius:16px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid ${ST.invSort===s?'var(--sage)':'var(--bd)'};background:${ST.invSort===s?'var(--sl)':'var(--wh)'};color:${ST.invSort===s?'var(--sage)':'var(--im)'};user-select:none">${sortLabel[s]}</div>`).join('')}
+  </div>
   ${fil.length===0?`<div style="text-align:center;padding:32px;color:var(--il)"><div style="font-size:32px;margin-bottom:8px">🥕</div>No items in ${ST.invCat}. <span onclick="openNewInv()" style="color:var(--sage);cursor:pointer;text-decoration:underline">Add one!</span></div>`:`
-  <div style="overflow-x:auto"><div class="card"><table class="tbl">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--bd)"><table class="tbl" style="margin:0">
     <thead><tr><th>Item</th><th>Qty</th><th>Stock</th><th>Status</th><th>🛒</th><th>Actions</th></tr></thead>
     <tbody>${fil.map(i=>{const st=stStat(i);const hn=!!(i.nutrition&&i.nutrition.cal);return`<tr>
       <td><div style="font-weight:500;font-size:13px">${i.name}${hn?`<span class="badge bok" style="font-size:9px;margin-left:3px">✍️</span>`:''}</div><div style="font-size:10px;color:var(--il)">${i.cat}</div></td>
@@ -572,7 +586,7 @@ function rinv(){
       <td><label style="display:flex;align-items:center;gap:3px;cursor:pointer"><input type="checkbox" ${i.slInclude?'checked':''} onchange="toggleSL('${i.id}',this.checked)" style="accent-color:var(--sage)"><span class="badge bbl" style="font-size:10px">${stPer(i)}%</span></label></td>
       <td><div style="display:flex;gap:4px"><button class="btn bs bsm" onclick="openEditInv('${i.id}')">✏️</button><button class="btn bd_ bsm" onclick="delInv('${i.id}')">🗑</button></div></td>
     </tr>`;}).join('')}</tbody>
-  </table></div></div>`}`;
+  </table></div>`}`;
 }
 </script>
 <script>
@@ -717,7 +731,7 @@ function rdata(){
   <div class="dac" style="border-color:var(--rl)"><div><div class="dat">↩ Sign Out</div><div class="dad">Your data stays safe in Firebase.</div></div><button class="btn bd_" onclick="doSignOut()">Sign Out</button></div>
   <div class="sdiv">App Info</div>
   <div class="card"><div style="font-size:13px;display:flex;flex-direction:column;gap:8px">
-    <div style="display:flex;justify-content:space-between"><span style="color:var(--il)">Version</span><span style="font-weight:500">v2.2.0</span></div>
+    <div style="display:flex;justify-content:space-between"><span style="color:var(--il)">Version</span><span style="font-weight:500">v2.3.0</span></div>
     <div style="display:flex;justify-content:space-between"><span style="color:var(--il)">Storage</span><span style="font-weight:500">Firebase Firestore</span></div>
     <div style="display:flex;justify-content:space-between"><span style="color:var(--il)">RDA Profile</span><span style="font-weight:500">SG Adult (HPB)</span></div>
     <div style="display:flex;justify-content:space-between"><span style="color:var(--il)">Account</span><span style="font-weight:500">${ST.user?.email||''}</span></div>
